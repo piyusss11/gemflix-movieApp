@@ -1,11 +1,12 @@
-import React from 'react'
+import MainHeader from "./MainHeader";
 
 const Browse = () => {
   return (
-    <div>
+    <div className=" h-screen">
+      <MainHeader />
       Browse
     </div>
-  )
-}
+  );
+};
 
-export default Browse
+export default Browse;
