@@ -4,17 +4,25 @@ import { checkValidateData } from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "@/utils/userSlice";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [errorMsg, setErrorMsg] = useState(true);
+
+  const dispatch = useDispatch()
+
   const email = useRef(null);
   const password = useRef(null);
   const fullName = useRef(null);
-  const navigate = useNavigate()
+
+  const navigate = useNavigate();
+
   const toggeleSignIn = () => {
     setIsSignIn(!isSignIn);
   };
@@ -41,9 +49,31 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
+          updateProfile(user, {
+            displayName: fullName.current.value, // updating name
+            photoURL: "https://picsum.photos/200",
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+              // Profile updated!
+              
+              navigate("/browse");
+            })
+            .catch((error) => {
+              // An error occurred
+              setErrorMsg(error)
+            });
+
           console.log(user);
           console.log("signing succesfully");
-          navigate("/browse")
 
           // ...
         })
@@ -67,7 +97,7 @@ const Login = () => {
           const user = userCredential.user;
           console.log(user);
           console.log("loginned successfully");
-          navigate("/browse")
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
