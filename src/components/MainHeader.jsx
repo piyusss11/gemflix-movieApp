@@ -57,7 +57,7 @@ const MainHeader = () => {
       });
   };
   return (
-    <div className="flex justify-between w-full bg-black px-10 py-2 text-white items-center z-10">
+    <div className="flex justify-between w-full bg-black bg-opacity-90 px-10 py-2 text-white items-center z-10">
       <div className="flex items-center gap-8">
         <img
           className="w-28 mr-8 "
