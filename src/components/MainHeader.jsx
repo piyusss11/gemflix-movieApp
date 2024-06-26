@@ -6,18 +6,26 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "@/utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "@/utils/userSlice";
 import { LOGO_URL } from "@/utils/constants";
+import { removeGptSearchView, toggleGptSearchView } from "@/utils/gptSlice";
+
 
 const MainHeader = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+  const handleGptClick = () => {
+    dispatch(toggleGptSearchView());
+  };
+  const handleHomeClick =()=>{
+    dispatch(removeGptSearchView())
+  }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -41,7 +49,7 @@ const MainHeader = () => {
         // User is signed out
         // ...
       }
-      return ()=> unsubscribe() // unsubscribing when demounting the component
+      return () => unsubscribe(); // unsubscribing when demounting the component
     });
   }, []);
 
@@ -59,12 +67,14 @@ const MainHeader = () => {
   return (
     <div className="flex justify-between w-full bg-black bg-opacity-90 px-10 py-2 text-white items-center z-10">
       <div className="flex items-center gap-8">
-        <img
-          className="w-28 mr-8 "
-          src={LOGO_URL}
-          alt="logo"
-        />
+        <img className="w-28 mr-8 " src={LOGO_URL} alt="logo" />
+        <NavLink onClick={handleHomeClick} to={"/browse"}>Home</NavLink>
+        <h1>My List</h1>
+        <h1 className="cursor-pointer" onClick={handleGptClick} >
+          GPT Search
+        </h1>
       </div>
+
       <div className="flex gap-2">
         <img className="rounded lg w-10 h-10" src={user?.photoURL} alt="" />
         <DropdownMenu>
