@@ -8,7 +8,7 @@ const MainContainer = () => {
   // const num = Math.floor(Math.random() * 10)
   // console.log(num);
   
-  const mainMovie = movies[3];
+  const mainMovie = movies[5];
   // console.log(mainMovie);
   const { original_title, overview,id } = mainMovie;
   return (

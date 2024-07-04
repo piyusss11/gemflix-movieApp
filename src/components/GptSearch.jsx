@@ -1,8 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { BG_URL } from "@/utils/constants";
+import lang from "@/utils/languageConstants";
+import { useSelector } from "react-redux";
 
 const GptSearch = () => {
+  const currentlang = useSelector((store)=>store.config?.lang)
+  // console.log(currentlang);
+  
+  const translations = lang[currentlang] || lang.En
   return (
     <div className="flex justify-center bg-black">
       <div className="absolute">
@@ -12,9 +17,9 @@ const GptSearch = () => {
           alt=""
         />
       </div>
-      <div className="flex w-full absolute justify-center mt-64  max-w-sm items-center space-x-2">
-        <Input type="email" placeholder="What do you want to watch?" />
-        <Button type="submit">Subscribe</Button>
+      <div className="flex w-full absolute justify-center mt-52  max-w-sm items-center space-x-2">
+        <Input type="email" placeholder={translations.gptSearchPlaceholder} />
+        <Button size="lg" type="submit">{translations.search}</Button>
       </div>
     </div>
   );
