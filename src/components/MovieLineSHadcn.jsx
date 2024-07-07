@@ -19,7 +19,7 @@ const MovieLineSHadcn = ({ list }) => {
           {list?.map((movies, index) => (
             <NavLink
               key={index}
-              to={`/watch/${movies?.title}%id=${movies?.id}`}
+              to={`/watch/${movies?.id}`}
             >
               <CarouselItem className="pl-1 md:basis-1/3 lg:basis-1/6  w-56 ">
                 <img

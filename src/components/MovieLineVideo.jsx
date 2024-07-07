@@ -17,7 +17,7 @@ const MovieLineVideo = ({ list, title }) => {
       <Carousel className="w-[96%] mx-auto ">
         <CarouselContent className="-ml-1">
           {list?.map((movies, index) => (
-            <NavLink key={index} to={`/watch/ ${(movies?.title)?(movies?.title):(movies?.name)}%id=${movies?.id}`}>
+            <NavLink key={index} to={`/watch/${movies?.id}`}>
               <CarouselItem className="pl-1 md:basis-1/3 lg:basis-1/6 w-40 max-w-40">
                 <img
                   className="rounded-xl h-56 w-40"

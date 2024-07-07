@@ -10,14 +10,14 @@ const VideoTitle = (props) => {
       <p className="  py-6 text-lg w-1/4">{description}</p>
       <div className="my-4 ">
         {
-          <NavLink to={`/watch/${title}%id=${movieID}`}>
+          <NavLink to={`/watch/${movieID}`}>
             <button className=" bg-white text-black  p-4 px-10 text-xl  rounded-lg hover:bg-opacity-80">
               <i className="ri-play-fill "></i> Play
             </button>
           </NavLink>
         }
         {
-          <NavLink to={`/watch/${title}%id=${movieID}`}>
+          <NavLink to={`/watch/${movieID}`}>
             <button className=" mx-2  bg-gray-500 text-white p-4 px-10 text-xl bg-opacity-50 rounded-lg">
               <i className="ri-information-line "></i> More Info
             </button>

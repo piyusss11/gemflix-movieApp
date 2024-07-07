@@ -1,11 +1,12 @@
 import { API_OPTIONS } from "@/utils/constants";
-import { addTrailerVideo } from "@/utils/moviesSlice";
+import { addTrailerVideo, removeTrailerVideo } from "@/utils/moviesSlice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 const useMovieTrailer = (movieID) => {
   const dispatch = useDispatch();
   const getMovieVideos = async () => {
+    dispatch(removeTrailerVideo())
     const data = await fetch(
       `https://api.themoviedb.org/3/movie/${movieID}/videos?language=en-US`,
       API_OPTIONS
