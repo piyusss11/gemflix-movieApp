@@ -16,43 +16,33 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [errorMsg, setErrorMsg] = useState(true);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const email = useRef(null);
   const password = useRef(null);
   const fullName = useRef(null);
 
-  const toggeleSignIn = () => {
+  const toggleSignIn = () => {
     setIsSignIn(!isSignIn);
   };
-  const handleButtonClick = () => {
-    // console.log(email.current.value);
-    // console.log(password.current.value);
-    const message = checkValidateData(
-      email.current.value,
-      password.current.value
-    );
-    // console.log(message);
 
+  const handleButtonClick = () => {
+    const message = checkValidateData(email.current.value, password.current.value);
     setErrorMsg(message);
     if (message) return;
 
     if (!isSignIn) {
       console.log("signing started");
       // For Signup
-      createUserWithEmailAndPassword(
-        auth,
-        email.current.value,
-        password.current.value
-      )
+      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
           updateProfile(user, {
             displayName: fullName.current.value, // updating name
-            photoURL:PHOTO_AVATAR_URL,
+            photoURL: PHOTO_AVATAR_URL,
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -65,34 +55,25 @@ const Login = () => {
                 })
               );
               // Profile updated!
-              
               navigate("/browse");
             })
             .catch((error) => {
               // An error occurred
-              setErrorMsg(error)
+              setErrorMsg(error);
             });
 
           console.log(user);
           console.log("signing succesfully");
-
-          // ...
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMsg(`${errorCode} - ${errorMessage}`);
-          // console.log(`${errorCode} - ${errorMessage}`);
-          // setErrorMsg(`Wrong Id or Password`);
         });
     } else {
       console.log("loggin starting");
       //for SignIn
-      signInWithEmailAndPassword(
-        auth,
-        email.current.value,
-        password.current.value
-      )
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
@@ -103,17 +84,17 @@ const Login = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          // setErrorMsg(`${errorCode} - ${errorMessage}`);
           setErrorMsg(`Wrong Id or Password`);
         });
     }
   };
+
   return (
-    <div className="">
+    <div className="relative min-h-screen">
       <Header />
-      <div className="absolute">
+      <div className="absolute inset-0">
         <img
-          className="bg-gradient-to-b from-black"
+          className="object-cover w-full h-full"
           src={BG_URL}
           alt=""
         />
@@ -121,7 +102,7 @@ const Login = () => {
 
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="absolute p-10 text-white bg-black bg-opacity-70 w-3/12  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "
+        className="absolute p-10 text-white bg-black bg-opacity-70 w-11/12 sm:w-3/12 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
       >
         <div className="flex flex-col">
           <h1 className="text-3xl mb-4 font-bold ">
@@ -158,7 +139,7 @@ const Login = () => {
             {isSignIn ? "New To Netflix?" : "Ready to watch"}
 
             <span
-              onClick={toggeleSignIn}
+              onClick={toggleSignIn}
               className="hover:underline cursor-pointer "
             >
               {" "}

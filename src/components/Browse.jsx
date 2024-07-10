@@ -20,9 +20,9 @@ const Browse = () => {
     <div className=" h-screen">
       <MainHeader />
       {showGpt ? (
-        <GptPage/>
-        // <GptSearch />
+        <GptPage />
       ) : (
+        // <GptSearch />
         <>
           <MainContainer />
           <SecondaryContainer />
