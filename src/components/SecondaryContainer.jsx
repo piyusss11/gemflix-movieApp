@@ -26,7 +26,6 @@ const SecondaryContainer = () => {
             title={"Popular TV Series"}
             list={movies?.popularTvSeries}
           />
-          
         </div>
       </div>
     )

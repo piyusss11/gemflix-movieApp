@@ -6,7 +6,7 @@ const VideoBackground = (props) => {
   const trailerObj = useSelector((store) => store.movies?.trailerVideo);
   const { movieID } = props;
   useMovieTrailer(movieID);
-  console.log(trailerObj?.key);
+  // console.log(trailerObj?.key);
   
   return (
     <div className="w-full ">
