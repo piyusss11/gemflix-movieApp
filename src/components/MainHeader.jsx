@@ -15,12 +15,15 @@ import { addUser, removeUser } from "@/utils/userSlice";
 import { LANGUAGES, LOGO_URL } from "@/utils/constants";
 import { removeGptSearchView, toggleGptSearchView } from "@/utils/gptSlice";
 import { changeLanguage } from "@/utils/configSlice";
+import lang from "@/utils/languageConstants";
 
 const MainHeader = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const language = useSelector((store) => store.config?.lang);
   const user = useSelector((store) => store.user);
+  const currentlang = useSelector((store) => store.config?.lang);
+  const translations = lang[currentlang] || lang.En;
 
   const handleGptClick = () => {
     dispatch(toggleGptSearchView());
@@ -74,14 +77,14 @@ const MainHeader = () => {
           to={"/browse"}
           className="hidden sm:block"
         >
-          Home
+          {translations.homeBtn}
         </NavLink>
         {/* <h1 className="hidden sm:block">My List</h1> */}
         <h1
           className="cursor-pointer text-xs md:text-base  sm:block"
           onClick={handleGptClick}
         >
-          GPT Search
+          {translations.geminiBtn}
         </h1>
       </div>
 
@@ -117,14 +120,14 @@ const MainHeader = () => {
             <i className="text-white ri-arrow-down-s-fill"></i>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuLabel>{translations.myAccount}</DropdownMenuLabel>
             <DropdownMenuItem>
               <h1>{user?.displayName}</h1>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <button className="font-semibold" onClick={handleSignOut}>
-                Sign Out
+                {translations.signOut}
               </button>
             </DropdownMenuItem>
           </DropdownMenuContent>

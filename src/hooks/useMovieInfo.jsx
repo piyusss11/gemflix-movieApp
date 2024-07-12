@@ -12,8 +12,8 @@ const useMovieInfo = (movieId) => {
     const info = await json;
     // console.log(info);
     setMovieInfo(info);
-    console.log(movieInfo);
-    console.log(movieId);
+    // console.log(movieInfo);
+    // console.log(movieId);
 
     return movieInfo;
   };
