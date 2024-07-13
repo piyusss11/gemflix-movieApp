@@ -1,5 +1,5 @@
 export const LOGO_URL =
-  "https://image.tmdb.org/t/p/original/wwemzKWzjKYJFfCeiB57q3r4Bcm.svg";
+  "./images/Gemflex.png";
 
 export const PHOTO_AVATAR_URL = "https://picsum.photos/200";
 export const API_OPTIONS = {
