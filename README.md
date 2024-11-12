@@ -39,3 +39,15 @@ Gemflix is a dynamic and engaging movie app designed to provide users with a sea
  * **Firebase:** For authentication and user management.
 
 ## Live link- https://netflixgpt-6a242.web.app
+# Homepage 
+
+![Screenshot 2024-09-02 055729](https://github.com/user-attachments/assets/d5e54b93-3a3e-419c-8eb0-4bad08db36ee)
+## Login page
+
+![Screenshot 2024-06-18 181504](https://github.com/user-attachments/assets/98c92bf4-d4c5-474c-a28a-b440040e1da2)
+
+## Ai movies Recommendation Page
+![Screenshot (59)](https://github.com/user-attachments/assets/18a25d86-037b-4469-9bb8-6856c42da887)
+
+
+
